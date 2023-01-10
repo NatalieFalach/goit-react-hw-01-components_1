@@ -7,16 +7,6 @@ function getRandomColor() {
 
 export const Statistics = ({title, stats}) => {
 
-  const staticsList = stats.map((item) => {
-
-    return (
-      <Item color={getRandomColor()} key={item.id}>
-        <span>{item.label}</span>
-        <ItemPercentage>{item.percentage}%</ItemPercentage>
-      </Item>
-    )
-  })
-  
   return (
     <StatisticsTitle>
       {title && (
@@ -24,7 +14,14 @@ export const Statistics = ({title, stats}) => {
       )}
 
       <StatList>
-        {staticsList}
+        {stats.map((item) => {
+          return (
+            <Item color={getRandomColor()} key={item.id}>
+              <span>{item.label}</span>
+              <ItemPercentage>{item.percentage}%</ItemPercentage>
+            </Item>
+          )
+        })}
       </StatList>
     </StatisticsTitle>
   )

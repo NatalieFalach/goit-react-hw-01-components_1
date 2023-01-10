@@ -3,16 +3,6 @@ import { Transaction, Thead, Th, Td, Tr } from './TransactionHistory.styled'
 
 export const TransactionHistory = ({ items }) => {
 
-  const transactionList = items.map(item => {
-    return (
-       <Tr key ={item.id}>
-            <Td>{item.type}</Td>
-            <Td>{item.amount}</Td>
-            <Td>{item.currency}</Td>
-        </Tr> 
-    )
-  })
-
   return (
       <Transaction >
         <Thead>
@@ -24,7 +14,15 @@ export const TransactionHistory = ({ items }) => {
         </Thead>
 
         <tbody>
-          {transactionList}
+          {items.map(item => {
+            return (
+              <Tr key ={item.id}>
+                <Td>{item.type}</Td>
+                <Td>{item.amount}</Td>
+                <Td>{item.currency}</Td>
+              </Tr> 
+            )
+          })}
         </tbody>
     </Transaction>
   );
@@ -33,6 +31,7 @@ export const TransactionHistory = ({ items }) => {
 TransactionHistory.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
+      id: PropTypes.string.isRequired,
       type: PropTypes.string.isRequired,
       amount: PropTypes.string.isRequired,
       currency: PropTypes.string.isRequired
